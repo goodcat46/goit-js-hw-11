@@ -3,6 +3,11 @@ import Notiflix from 'notiflix';
 import Handlebars from 'handlebars';
 import list from './list.hbs';
 import card from './card.hbs';
+// import axios from "axios";
+// axios.get('/users')
+//   .then(res => {
+//     console.log(res.data);
+//   });
 
 import './css/styles.css';
 import { JsonCountriesApi } from './jsonCountryApi';

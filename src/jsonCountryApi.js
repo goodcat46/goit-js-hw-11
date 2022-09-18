@@ -19,13 +19,3 @@ export class JsonCountriesApi {
 
   }
 }
-//*&all?fields=name.official,capital,population,flags.svg,languages
-
-//* https://restcountries.com/v2/all?fields=name,capital,currencies
-//* https://restcountries.com/v2/{service}?fields={field},{field},{field}
-
-// name.official
-// capital
-// population
-// flags.svg
-// languages
