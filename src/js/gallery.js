@@ -1,5 +1,4 @@
 import { PixabayApi } from './api';
-// import createGalleryCards from '../templates/gallery-card.hbs';
 import Notiflix from 'notiflix';
 import makeGalleryCards from '../hbs/makeGalleryCards.hbs';
 
@@ -31,8 +30,8 @@ let {
   loadMoreBtnEl,
   bodyEl,
 } = refs;
-console.log(refs);
-loadMoreBtnEl.classList.add('is-hidden');
+
+
 const pixabayApi = new PixabayApi();
 const onLoadMoreBtnElClick = async event => {
   // Варіант через async/await

@@ -1,11 +1,7 @@
 .--notScrolled {
   overflow: hidden;
 }
-.is-hidden {
-  opacity: 0;
-  visibility: hidden;
-  display: none;
-}
+
 .button {
   display: block;
   border-style: none;
@@ -65,6 +61,11 @@
     padding: 8px 16px;
     min-height: 30px;
     margin: auto;
+    &.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+      display: none;
+    }
   }
 }
 .form {
