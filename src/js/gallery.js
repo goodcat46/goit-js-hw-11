@@ -56,7 +56,7 @@ const onLoadMoreBtnElClick = async event => {
   }
 };
 
-const onSearchsearchFormElSubmit = async event => {
+const onSearchFormElSubmit = async event => {
   event.preventDefault();
   //* зчитую інпут
   pixabayApi.searchQuery = formInputEl.value;
@@ -76,6 +76,7 @@ const onSearchsearchFormElSubmit = async event => {
       Notiflix.Notify.info(
         "We're sorry, but you've reached the end of search results."
       );
+      
       return;
     }
 
@@ -100,7 +101,7 @@ const onSearchsearchFormElSubmit = async event => {
   }
 };
 
-searchFormEl.addEventListener('submit', onSearchsearchFormElSubmit);
+searchFormEl.addEventListener('submit', onSearchFormElSubmit);
 function makeGalleryCard(el) {
   let {} = el;
   return `
