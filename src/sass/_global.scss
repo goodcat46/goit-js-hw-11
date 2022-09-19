@@ -1,5 +1,10 @@
-.--notScrolled{
+.--notScrolled {
   overflow: hidden;
+}
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  display: none;
 }
 .button {
   display: block;
@@ -9,25 +14,34 @@
   letter-spacing: 0.05em;
   text-align: center;
 
+  border-radius: 4px;
   border: 1px solid transparent;
 
   transition: all var(--timing-function__main);
+
+  &:hover {
+    background-color: rgb(130, 255, 123);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  }
+  &:active {
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  }
 
   &.--close-modal {
     display: flex;
     align-items: center;
     justify-content: center;
-  
+
     align-self: flex-start;
-  
+
     width: 30px;
     height: 30px;
-  
+
     background-color: #ffffff;
-  
+
     fill: black;
     transition: box-shadow var(--anim-main-timing-function);
-  
+
     & .btn-icon {
       width: 12px;
       height: 12px;
@@ -41,6 +55,90 @@
     }
     &:active {
       background-color: rgba(225, 225, 225, 0.6);
+    }
+  }
+  &.--form-btn {
+    padding: 8px 16px;
+    min-height: 30px;
+  }
+  &.--loadMoreBtn {
+    padding: 8px 16px;
+    min-height: 30px;
+    margin: auto;
+  }
+}
+.form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  &-input {
+    height: 30px;
+    border-style: none;
+
+    width: 250px;
+    padding: 0 16px;
+
+    outline-style: none;
+    border-bottom: 2px solid rgb(180, 180, 180);
+
+    transition: all var(--timing-function__main);
+    &:hover,
+    &:focus {
+      border-bottom: 2px solid rgb(130, 255, 123);
+    }
+  }
+}
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  width: 100%;
+
+  margin: 8px 0;
+}
+
+.card {
+  position: relative;
+  max-width: 250px;
+  & .img {
+    display: block;
+    width: 100%;
+    max-height: 250px;
+  }
+  &:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+  &-bottom {
+    position: sticky;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr 3fr);
+    align-items: center;
+    gap: 2px;
+
+    padding: 2px;
+
+    & .col-title {
+      text-align: center;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px;
+      text-align: left;
+    }
+    & .col-text {
+      text-align: left;
+      font-size: 10px;
+      padding: 2px 8px;
+      text-align: right;
     }
   }
 }

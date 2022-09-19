@@ -29,10 +29,25 @@
     <!-- стилі -->
     <link rel="stylesheet" href="./sass/index.scss" />
   </head>
-  <body class="--notScrolled">
-    <div class="container js-container"></div>
-    <div class="js-low-div"></div>
-    <div class="backdrop js-backdrop" data-modal>
+  <body>
+    <div class="container js-container">
+
+      <form class="form">
+        <input class="form-input" type="text" name="qsearch" id="qsearch" />
+        <button class="button --form-btn" type="submit">Шукати</button>
+      </form>
+
+      <div class="gallery"></div>
+
+      <button type="button" class="button --loadMoreBtn js-load-more">
+        Load more
+      </button>
+
+      <div class="js-low-div"></div>
+      
+    </div>
+
+    <div class="backdrop is-hidden js-backdrop" data-modal>
       <div class="modal flex">
         <div class="modal-top">
           <span class="modal-name js-modal-name"></span>
@@ -41,7 +56,9 @@
           </button>
         </div>
         <div class="modal-overflow js-modal-overflow">
-          <div class="modal-content js-modal-content"></div>
+          <div class="modal-content js-modal-content">
+            <div class="slick-slider-container"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -51,7 +68,7 @@
     <!-- script slick -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
     <!-- script local -->
-    <script type="module" src="./index.js"></script>
+    <script type="module" src="./js/gallery.js"></script>
     <script type="module" src="./js/slick.js"></script>
   </body>
 </html>
