@@ -50,7 +50,7 @@ const onLoadMoreBtnElClick = async event => {
         "We're sorry, but you've reached the end of search results."
       );
     }
-    galleryEl.insertAdjacentHTML('beforeend',makeGalleryCards(data.hits))
+    galleryEl.insertAdjacentHTML('beforeend', makeGalleryCards(data.hits));
   } catch (err) {
     console.log(err);
   }
@@ -76,10 +76,15 @@ const onSearchFormElSubmit = async event => {
       Notiflix.Notify.info(
         "We're sorry, but you've reached the end of search results."
       );
-      
+
       return;
     }
-
+    if (pixabayApi.page >= data.totalHits / pixabayApi.per_page) {
+      // Якщо ТІЛЬКИ одна сторінка то тільки відмальовуємо, (is-hidden не знімаємо)
+      galleryEl.innerHTML = makeGalleryCards(data.hits);
+      Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
+      return ;
+    }
     if (data.totalHits === 0) {
       //* очищаю галрею
       galleryEl.innerHTML = '';
@@ -95,6 +100,7 @@ const onSearchFormElSubmit = async event => {
     loadMoreBtnEl.classList.remove('is-hidden');
     //* додаю слухач подій на кнопку
     loadMoreBtnEl.addEventListener('click', onLoadMoreBtnElClick);
+    Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
   } catch (err) {
     // помилка піде у лог
     console.log(err);
@@ -102,30 +108,9 @@ const onSearchFormElSubmit = async event => {
 };
 
 searchFormEl.addEventListener('submit', onSearchFormElSubmit);
-function makeGalleryCard(el) {
-  let {} = el;
-  return `
-<div class="photo-list">
-  <div class="card">
-    <!-- <img src="" alt=""> -->
-    <div class="card-bottom">
-      <div class="col-title">Views</div>
-      <div class="col-text"></div>
-      <div class="col-title">Likes</div>
-      <div class="col-text"></div>
-      <div class="col-title">Comments</div>
-      <div class="col-text"></div>
-      <div class="col-title">Downloads</div>
-      <div class="col-text"></div>
-    </div>
-  </div>
-</div>`;
-}
-function makeGallery(arr) {
-  return arr.map(el => makeGalleryCard(el)).join('');
-}
 
-function onBackdropClick(event) {
+
+/*function onBackdropClick(event) {
   let { target, currentTarget } = event;
   if (target === currentTarget) {
     closeModal();
@@ -147,4 +132,4 @@ function closeModal() {
   }
 }
 closeModalBtnEl.addEventListener('click', closeModal);
-modalEl.addEventListener('click', onBackdropClick);
+modalEl.addEventListener('click', onBackdropClick);*/
