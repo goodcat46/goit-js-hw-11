@@ -1,0 +1,46 @@
+.--notScrolled{
+  overflow: hidden;
+}
+.button {
+  display: block;
+  border-style: none;
+
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  text-align: center;
+
+  border: 1px solid transparent;
+
+  transition: all var(--timing-function__main);
+
+  &.--close-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    align-self: flex-start;
+  
+    width: 30px;
+    height: 30px;
+  
+    background-color: #ffffff;
+  
+    fill: black;
+    transition: box-shadow var(--anim-main-timing-function);
+  
+    & .btn-icon {
+      width: 12px;
+      height: 12px;
+      min-width: 12px;
+      min-height: 12px;
+    }
+    &:hover,
+    &:focus {
+      fill: var(--brand_clr__1--accent);
+      background-color: rgba(225, 225, 225, 0.3);
+    }
+    &:active {
+      background-color: rgba(225, 225, 225, 0.6);
+    }
+  }
+}

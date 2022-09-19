@@ -1,89 +1,51 @@
-import debounce from 'lodash.debounce';
-import Notiflix from 'notiflix';
-import Handlebars from 'handlebars';
-import list from './list.hbs';
-import card from './card.hbs';
-// import axios from "axios";
-// axios.get('/users')
-//   .then(res => {
-//     console.log(res.data);
-//   });
-
-import './css/styles.css';
-import { JsonCountriesApi } from './jsonCountryApi';
-
-const DEBOUNCE_DELAY = 300;
+import modal from './hbs/modal.hbs'
 const refs = {
-  inputEl: document.querySelector('#search-box'),
-  listEl: document.querySelector('.country-list'),
-  infoEl: document.querySelector('.country-info'),
+  mainContainerEl: document.querySelector('.js-container'),
+  closeModalBtnEl: document.querySelector('[data-close-modal]'),
+  forLazyLoadEl: document.querySelector('.js-low-div'),
+  modalEl: document.querySelector('.js-backdrop'),
+  modalContentEl: document.querySelector('.js-modal-content'),
+  bodyEl: document.body
 };
-const serchCountryByName = new JsonCountriesApi();
+let {
+  mainContainerEl,
+  closeModalBtnEl,
+  forLazyLoadEl,
+  modalEl,
+  modalContentEl,
+  bodyEl,
+} = refs;
 
-refs.inputEl.addEventListener(
-  'input',
-  debounce(event => {
-    let countryName = event.target.value;
-    if (countryName.trim() === '') {
-      refs.listEl.innerHTML = '';
-      refs.infoEl.innerHTML = '';
-      refs.listEl.classList.remove('box-shadow');
-      refs.infoEl.classList.remove('box-shadow');
-      Notiflix.Notify.failure('Please enter the country name');
-      return;
-    } else {
-      console.log('Пошук країни:', countryName.trim());
-      serchCountryByName.name = countryName.trim();
+function onBackdropClick(event) {
+  let { target, currentTarget } = event;
+  if (target === currentTarget) {
+    closeModal();
+  }
+}
+function toggleModal() {
+  modalEl.classList.toggle('is-hidden');
+  bodyEl.classList.toggle('--notScrolled');
+  modalEl.addEventListener('click', onBackdropClick);
+}
+function closeModal() {
+  modalEl.classList.toggle('is-hidden');
+  bodyEl.classList.remove('--notScrolled');
+  if (modalEl.classList.contains('is-hidden')) {
+    modalNameEl.innerHTML = '';
+    modalContentEl.innerHTML = '';
+    modalContentEl.classList.remove('--emptyCartContent');
+    modalEl.removeEventListener('click', onBackdropClick);
+    closeModalBtnEl.removeEventListener('click', closeModal)
 
-      serchCountryByName
-        .fetchCountries()
-        .then(data => {
-          let { name, capital, population, flags, languages } = data[0];
-          let contryObj = {
-            name,
-            capital,
-            population,
-            flag: flags.svg,
-            langList: Object.values(languages).join(''),
-          };
-          if (data.length > 10) {
-            Notiflix.Notify.failure('Please enter the country name currently');
-            console.log('Ввведіть назву країни детальніше');
-            return;
-          } else if (data.length === 1) {
-            refs.listEl.innerHTML = '';
-            refs.infoEl.classList.add('box-shadow');
-            refs.listEl.classList.remove('box-shadow');
-            refs.infoEl.innerHTML = card(contryObj);
-            console.log(data[0]);
-            return;
-          } else {
-            refs.infoEl.innerHTML = '';
-            refs.infoEl.classList.remove('box-shadow');
-            refs.listEl.classList.add('box-shadow');
-            refs.listEl.innerHTML = list(data);
-            console.log(data);
-          }
-        })
-        .catch(error => {
-          if (error.message === '404') {
-            refs.listEl.innerHTML = '';
-            refs.infoEl.innerHTML = '';
-            refs.listEl.classList.remove('box-shadow');
-            refs.infoEl.classList.remove('box-shadow');
-            Notiflix.Notify.failure('Oops, there is no country with that name');
-            console.log('Такої країни не знайдено', countryName.trim());
-          }
-        });
-    }
-  }, DEBOUNCE_DELAY)
-);
+  }
+}
+closeModalBtnEl.addEventListener('click', closeModal)
+modalEl.addEventListener('click', onBackdropClick)
 
-// refs.inputEl.addEventListener('input', event => {
-//   let countryName = event.target.value;
-//   console.log('Пошук країни:', countryName.trim());
-//   serchCountryByName.name = countryName.trim();
-//   serchCountryByName.fetchCountries().then(data => {
-//     console.log(data);
-//   });
-// });
+
+console.log(mainContainerEl);
+console.log(closeModalBtnEl);
+console.log(forLazyLoadEl);
+console.log(modalEl);
+console.log(modalContentEl);
+console.log(bodyEl);

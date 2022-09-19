@@ -1,17 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Homework 10</title>
+    <title>js-hw-11</title>
+    <!-- ШРИФТИ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&family=Raleway:wght@700;800;900&family=Roboto:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- slick slider -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css.map"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"
+    />
+
+    <!-- стилі -->
+    <link rel="stylesheet" href="./sass/index.scss" />
   </head>
-  <body>
-    <input type="text" id="search-box" name="country" />
+  <body class="--notScrolled">
+    <div class="container js-container"></div>
+    <div class="js-low-div"></div>
+    <div class="backdrop js-backdrop" data-modal>
+      <div class="modal flex">
+        <div class="modal-top">
+          <span class="modal-name js-modal-name"></span>
+          <button class="button --close-modal" type="button" data-close-modal>
+            <img class="btn-icon" src="./images/cross.svg" alt="" />
+          </button>
+        </div>
+        <div class="modal-overflow js-modal-overflow">
+          <div class="modal-content js-modal-content"></div>
+        </div>
+      </div>
+    </div>
 
-    <ul class="country-list"></ul>
-    <div class="country-info"></div>
-
-    <script src="index.js" type="module"></script>
+    <!-- script jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <!-- script slick -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <!-- script local -->
+    <script type="module" src="./index.js"></script>
+    <script type="module" src="./js/slick.js"></script>
   </body>
 </html>
