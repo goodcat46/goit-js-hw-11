@@ -32,8 +32,8 @@ let {
   bodyEl,
 } = refs;
 console.log(refs);
+loadMoreBtnEl.classList.add('is-hidden');
 const pixabayApi = new PixabayApi();
-
 const onLoadMoreBtnElClick = async event => {
   // Варіант через async/await
   try {
@@ -41,7 +41,7 @@ const onLoadMoreBtnElClick = async event => {
 
     const { data } = await pixabayApi.fetchPhotosByQuery();
 
-    // galleryEl.insertAdjacentHTML('beforeend', createGalleryCards(data));
+
 
     if (pixabayApi.page >= data.totalHits / pixabayApi.per_page + 1) {
       loadMoreBtnEl.classList.add('is-hidden');

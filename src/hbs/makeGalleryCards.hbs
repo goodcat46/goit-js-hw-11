@@ -1,6 +1,14 @@
 {{#each this}}
   <div class='card'>
-    <img class="img" src="{{webformatURL}}" alt='' data-img-url='{{webformatURL}}' />
+    <div class='img-box'>
+      <img
+        class='img'
+        src='{{webformatURL}}'
+        alt=''
+        data-img-url='{{webformatURL}}'
+      />
+
+    </div>
     <div class='card-bottom'>
       <div class='col-title'>Views</div>
       <div class='col-text'>{{views}}</div>
